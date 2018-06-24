@@ -1,0 +1,15 @@
+index.php
+debug.log
+/upgrade/*
+/plugins/index.php
+/themes/index.php
+/themes/twentyfifteen
+/themes/twentysixteen
+/themes/twentyseventeen
+
+# その他
+.DS_Store
+
+# git関連ファイルを追加
+!.gitignore
+!README.md
