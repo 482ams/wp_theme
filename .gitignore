@@ -1,5 +1,5 @@
-index.php
-debug.log
+/debug.log
+/index.php
 /upgrade/*
 /plugins/index.php
 /themes/index.php
