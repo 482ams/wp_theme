@@ -7,14 +7,10 @@ require get_template_directory() . '/inc/origin/class-admin_post_list_setting.ph
 require get_template_directory() . '/inc/origin/class-widgets_area_setting.php';
 require get_template_directory() . '/inc/origin/class-admin_page_setting.php';
 require get_template_directory() . '/inc/origin/class-search_setting.php';
-
-
 require get_template_directory() . '/inc/origin/class-front_setting.php';
 require get_template_directory() . '/inc/origin/class-loginpage_setting.php';
-
 require get_template_directory() . '/inc/origin/class-plugin_setting.php';
 require get_template_directory() . '/inc/origin/widget/class-wp-widget-recent-posts-add-option.php';
-
 
 class Theme_setting{
 
@@ -66,7 +62,7 @@ class Theme_setting{
     // wp_enqueue_style( 'fontawsome', 'href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css', 'theme-style' );
 
     wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'theme-style', get_template_directory_uri() . '/js/origin/script.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'theme-script', get_template_directory_uri() . '/js/origin/script.js', array( 'jquery' ), '', true );
 
     // /* googlemap表示(google map api使用の場合) */
   	// if( is_page( 'company' ) ){
