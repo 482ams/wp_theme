@@ -1,6 +1,9 @@
 <?php
 class Class_front_setting{
   function __construct(){
+    /* ワードプレスのバージョン出力の非表示 */
+    remove_action('wp_head', 'wp_generator');
+
     /* アーカイブタイトル修正（アーカイブの「アーカイブ:」の削除） */
     // add_filter( 'get_the_archive_title', array( $this, 'change_archive_title' ) );
 
