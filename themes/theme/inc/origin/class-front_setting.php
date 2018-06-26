@@ -24,12 +24,12 @@ class Class_front_setting{
   }
 
   /* 抜粋文字数調整 */
-  function change_excerpt_mblength( $length ) {
+  public function change_excerpt_mblength( $length ) {
       return 55;
   }
 
   /* 抜粋オーバー時の文字修正 */
-  function my_excerpt_more( $more ) {
+  public function my_excerpt_more( $more ) {
     return '…';
   }
 }
