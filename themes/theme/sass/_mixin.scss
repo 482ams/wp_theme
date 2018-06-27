@@ -1,0 +1,33 @@
+//main:style.scss
+
+/** list syleのリセット */
+@mixin list_style_none{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li{
+    margin:0;
+    padding:0;
+  }
+}
+
+/** clearfix */
+@mixin clearfix_min{
+  &::after{
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
+/** テキストを隠す */
+@mixin clearText {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/** fontawsome */
+@mixin fontawsome{
+    font-family: FontAwesome;
+}

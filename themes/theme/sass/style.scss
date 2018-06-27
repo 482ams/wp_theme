@@ -1,3 +1,104 @@
 // compileCompressed, compressedFilenamePattern: ../$1.css
 
 @import "_s_style";
+
+/* ========================
+# CSSコーディング基準
+
+1.コンテナと内容を分離する
+  コンテナ ： 内容を包括するブロック
+  内容 ： 意味のある情報
+2.メディアクエリなどで折り返しとなる場合、コンテナを入れ子にしてコンテナを折り返す
+3.横並び等になるコンテナを”インナーコンテナ”、横並びにならないコンテナを”アウターコンテナ”とする
+4.コンテナ自体にmargin、paddingを設定しない
+5.画面全体の左右の空きは”アウターコンテナ”の直下に設定する(div.ssite-lr-space)
+6.コンテナ毎の上下空きはコンテナ内の内容によって設定する
+
+※コンテナにmargin,paddingを設定した場合、以下のような弊害が発生する
+  ・コンテナに設定した背景色がmarginにより欠ける
+  ・折り返しが発生した場合marginの食い合いが変わり、空きが変化する
+
+
+
+# メディアクエリの設定
+
+[参考 デバイスサイズ]
+iPhone 4（以下） 縦 320px  横 480px
+iPhone 5/SE     縦 320px  横 568px
+iPhone 7/6      縦 375px  横 667px
+iPhone 7/6 Plus 縦 480px  横 736px
+iPad            縦 768px   横 1024px
+
+## 切り方の例１ 細かく切り分ける場合
+スマホ縦             : 320px〜（通常、スマホ縦は最小のため、メディアクエリは不要）
+スマホ横             : 481px〜
+タブレット縦、横、PC  : 768px〜
+タブレット横、PC     : 1024px〜
+PC大               : 1200px〜
+
+## 切り方の例2 1回のメディアクエリ
+タブレット縦、横、PC  : 768px〜
+
+## 切り方の例3 2回のメディアクエリ（タブレット縦時、タブレット横時での切り替え）
+タブレット縦、横、PC  : 768px〜
+タブレット横、PC     : 992px or 1024px〜 (992pxはBootstrpでのタブレット(縦)とPCの切り分け)
+
+## 切り方の例4 3回のメディアクエリ
+タブレット縦、横、PC  : 768px〜
+タブレット横、PC     : 992px〜 or 1024px（Bootstrpでのタブレット(縦)とPCの切り分け）
+PC大               : 1200px〜（BootstrpでのPC大との切り分け）
+======================== */
+
+/* ======================== サイト設定 ======================== */
+/* メディアクエリ */
+$media_query_size__m: 768px;
+$media_query_size__l: 992px;
+
+@mixin media_m{
+    @media all and ( min-width : $media_query_size__m ){
+        @content;
+    }
+}
+@mixin _media_m{
+    @media all and ( max-width : $media_query_size__m - 1 ){
+        @content;
+    }
+}
+@mixin media_l{
+    @media all and ( min-width : $media_query_size__l ){
+        @content;
+    }
+}
+@mixin _media_l{
+    @media all and ( max-width : $media_query_size__l - 1 ){
+        @content;
+    }
+}
+
+/* 左右空き ※アウターコンテナの内側に入れる */
+$site_lr_space: 20px;
+
+.site-lr-space{
+padding: 0 $site_lr_space;
+max-width: 1240px;
+margin-left: auto;
+margin-right: auto;
+}
+
+/* 上下空き ※コンテナに設定しない事 */
+@mixin footer_tb_space{
+  margin: 20px 0;
+}
+
+/* 色 */
+.site-footer--top{ background-color: #f00; }
+.site-footer--bottom{ background-color: #ff0;}
+.site-footer--copyright{
+  border-top-color: #000;
+  color: #888;
+}
+
+/* ============================================================ */
+@import "mixin";
+@import "footer";
+@import "util";

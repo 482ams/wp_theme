@@ -10,5 +10,4 @@ jQuery(function () {
         jQuery('body,html').animate({scrollTop: position}, speed, 'swing');
         return false;
     });
-
 });

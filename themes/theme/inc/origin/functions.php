@@ -16,7 +16,7 @@ class Theme_setting{
 
   function __construct() {
     /* style、script読み込み */
-    // add_action( 'wp_enqueue_scripts', array( $this, 'theme_scripts' ) );
+    add_action( 'wp_enqueue_scripts', array( $this, 'theme_scripts' ) );
 
     /* Wordpressの追加基本設定 */
     // new Class_wp_custom_setting();

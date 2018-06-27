@@ -1,0 +1,96 @@
+//main:style.scss
+
+/* =========
+コンテナ構造
+.site-footer--top
+.site-footer--bottom
+    .site-footer--bottom__left
+    .site-footer--bottom__right
+========= */
+
+/* コンテナ */
+.site-footer--bottom{
+  &__left{}
+  &__right{}
+  @include media_m{
+    @include clearfix_min;
+    position: relative;
+    &__left{
+      float: left;
+      width: 50%;
+    }
+    &__right{
+      float: left;
+      width: 50%;
+    }
+  }
+}
+
+/* 内容 */
+.site-footer--banner-area{
+  @include footer_tb_space;
+  ul{
+    @include list_style_none;
+    text-align: center;
+    li{
+      display: inline-block;
+      padding: 0.5em;
+      a{
+        padding: 0 0.5em;
+      }
+    }
+  }
+}
+
+.site-footer--scroll-top{
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  right: 0;
+  right: $site_lr_space; //TODO 他の方法での実装を検討
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.site-footer--site-title{
+  @include footer_tb_space;
+}
+
+.site-footer--company_info{
+  @include footer_tb_space;
+  p{
+    margin: 0;
+  }
+  &__name{}
+  &__addr{}
+  &__tel{}
+  &__fax{}
+}
+
+.site-footer--navgation{
+  @include footer_tb_space;
+  ul{
+    @include list_style_none;
+    li{
+      display: inline-block;
+    }
+
+    @include media_m{
+      text-align: right;
+      li{}
+    }
+
+  }
+}
+
+// コピーライト
+.site-footer--copyright{
+  border-top-style: solid;
+  border-top-width: 1px;
+  text-align: center;
+  font-size: 10px;
+  margin: 0;
+  padding: 1em;
+}
