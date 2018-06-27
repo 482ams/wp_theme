@@ -27,8 +27,10 @@
 			</div>
 		</div>
 		<div class="u-float_left u-width_100par">
-			<div class="site-lr-space u-relative">
-				<p class="site-footer--scroll-top"><a class="site-footer--scroll-top_btn" href="#">サイト上部に移動</a></p>
+			<div class="site-lr-space">
+				<div class="site-footer--scroll-top-area">
+						<p class="site-footer--scroll-top-area__abs"><a class="site-footer--scroll-top-btn" href="#">サイト上部に移動</a></p>
+				</div>
 			</div>
 		</div>
 		<div class="site-footer--bottom u-float_left u-width_100par">

@@ -4,7 +4,9 @@
 コンテナ論理構造
 .site-footer--top
 .空コンテナ
-    .site-footer--scroll-top
+    .site-footer--scroll-top-area
+      .site-footer--scroll-top-area__abs
+
 .site-footer--bottom
     .site-footer--bottom__left
     .site-footer--bottom__right
@@ -13,6 +15,22 @@
 /* ==================
    コンテナ
 ================== */
+.site-footer--top{}
+
+.site-footer--scroll-top-area{
+  position: relative;
+  &__abs{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .site-footer--bottom{
   &__left{}
   &__right{}
@@ -26,18 +44,6 @@
       vertical-align: bottom;
     }
   }
-}
-
-.site-footer--scroll-top{
-  position: absolute;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  // right: 0;
-  right: $site_lr_space; //TODO 他の方法での実装を検討
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
 }
 
 /* ==================
@@ -59,14 +65,13 @@
   }
 }
 
-/* 上に移動ボタン */
-.site-footer--scroll-top_btn{
-  @include hideText;
+.site-footer--scroll-top-btn{
   display: block;
+  position: relative;
   width: 50px;
   height: 50px;
-  // 画像の場合は、background-imageを設定
   cursor: pointer;
+  @include hideText;
   &::after{
       @include showText;
       @include fontawsome;
@@ -75,6 +80,7 @@
       top: 50%;
       left: 0;
       right: 0;
+      -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
       text-align: center;
   }
