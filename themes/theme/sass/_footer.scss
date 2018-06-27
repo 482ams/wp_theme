@@ -1,33 +1,50 @@
 //main:style.scss
 
 /* =========
-コンテナ構造
+コンテナ論理構造
 .site-footer--top
+.空コンテナ
+    .site-footer--scroll-top
 .site-footer--bottom
     .site-footer--bottom__left
     .site-footer--bottom__right
 ========= */
 
-/* コンテナ */
+/* ==================
+   コンテナ
+================== */
 .site-footer--bottom{
   &__left{}
   &__right{}
   @include media_m{
-    @include clearfix_min;
-    position: relative;
+    display: table;
     &__left{
-      float: left;
-      width: 50%;
+      display: table-cell;
     }
     &__right{
-      float: left;
-      width: 50%;
+      display: table-cell;
+      vertical-align: bottom;
     }
   }
 }
 
-/* 内容 */
-.site-footer--banner-area{
+.site-footer--scroll-top{
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  // right: 0;
+  right: $site_lr_space; //TODO 他の方法での実装を検討
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* ==================
+   内容
+================== */
+/* フッターバナー */
+.site-footer--banner{
   @include footer_tb_space;
   ul{
     @include list_style_none;
@@ -42,22 +59,33 @@
   }
 }
 
-.site-footer--scroll-top{
-  position: absolute;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  right: 0;
-  right: $site_lr_space; //TODO 他の方法での実装を検討
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
+/* 上に移動ボタン */
+.site-footer--scroll-top_btn{
+  @include hideText;
+  display: block;
+  width: 50px;
+  height: 50px;
+  // 画像の場合は、background-imageを設定
+  cursor: pointer;
+  &::after{
+      @include showText;
+      @include fontawsome;
+      position: absolute;
+      content: '\f106';
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+  }
 }
 
+/* フッターサイトタイトル（サイトロゴ） */
 .site-footer--site-title{
   @include footer_tb_space;
 }
 
+/* フッター会社情報 */
 .site-footer--company_info{
   @include footer_tb_space;
   p{
@@ -69,6 +97,7 @@
   &__fax{}
 }
 
+/* フッターナビゲーション */
 .site-footer--navgation{
   @include footer_tb_space;
   ul{
@@ -81,11 +110,10 @@
       text-align: right;
       li{}
     }
-
   }
 }
 
-// コピーライト
+/* コピーライト */
 .site-footer--copyright{
   border-top-style: solid;
   border-top-width: 1px;

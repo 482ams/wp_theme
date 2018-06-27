@@ -21,11 +21,16 @@
 }
 
 /** テキストを隠す */
-@mixin clearText {
-	text-indent: 100%;
+@mixin hideText {
+	text-indent: 110%;
 	white-space: nowrap;
 	overflow: hidden;
 }
+/** 隠したテキストを戻す */
+@mixin showText{
+  text-indent: 0;
+}
+
 
 /** fontawsome */
 @mixin fontawsome{

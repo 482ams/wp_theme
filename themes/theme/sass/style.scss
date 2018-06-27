@@ -9,14 +9,16 @@
   コンテナ ： 内容を包括するブロック
   内容 ： 意味のある情報
 2.メディアクエリなどで折り返しとなる場合、コンテナを入れ子にしてコンテナを折り返す
-3.横並び等になるコンテナを”インナーコンテナ”、横並びにならないコンテナを”アウターコンテナ”とする
-4.コンテナ自体にmargin、paddingを設定しない
-5.画面全体の左右の空きは”アウターコンテナ”の直下に設定する(div.ssite-lr-space)
-6.コンテナ毎の上下空きはコンテナ内の内容によって設定する
-
-※コンテナにmargin,paddingを設定した場合、以下のような弊害が発生する
-  ・コンテナに設定した背景色がmarginにより欠ける
-  ・折り返しが発生した場合marginの食い合いが変わり、空きが変化する
+3.横並び等になるコンテナ、absoluteされるコンテナなどを”インナーコンテナ”、横並びにならないコンテナを”アウターコンテナ”とする
+  ※画面全体の左右空きが適応されるコンテナを”アウターコンテナ”とする
+4.コンテナの横並びは可能な限り”display:table-cell”を使用する
+  ※ 上下中央を指定可能のため
+5.コンテナ自体にmargin、paddingを設定しない
+6.画面全体の左右の空きは”アウターコンテナ”の直下に設定する(div.ssite-lr-space)
+7.コンテナ毎の上下空きはコンテナ内の内容によって設定する
+  ※コンテナにmargin,paddingを設定した場合、以下のような弊害が発生する
+    ・コンテナに設定した背景色がmarginにより欠ける
+    ・折り返しが発生した場合marginの食い合いが変わり、空きが変化する
 
 
 
@@ -77,7 +79,6 @@ $media_query_size__l: 992px;
 
 /* 左右空き ※アウターコンテナの内側に入れる */
 $site_lr_space: 20px;
-
 .site-lr-space{
 padding: 0 $site_lr_space;
 max-width: 1240px;
@@ -92,6 +93,7 @@ margin-right: auto;
 
 /* 色 */
 .site-footer--top{ background-color: #f00; }
+.site-footer--scroll-top{background-color: #fff;}
 .site-footer--bottom{ background-color: #ff0;}
 .site-footer--copyright{
   border-top-color: #000;

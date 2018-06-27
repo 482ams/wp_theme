@@ -14,7 +14,7 @@
 	<footer id="colophon" class="site-footer">
 		<div class="site-footer--top u-float_left u-width_100par">
 			<div class="site-lr-space">
-				<div class="site-footer--banner-area">
+				<div class="site-footer--banner">
 					<ul>
 						<li><a href="" target="_blank" rel="nofollow">ほげほげ</a></li>
 						<li><a href="" target="_blank" rel="nofollow">ほげほげ</a></li>
@@ -28,17 +28,23 @@
 		</div>
 		<div class="u-float_left u-width_100par">
 			<div class="site-lr-space u-relative">
-				<p class="site-footer--scroll-top"><a href="#">サイト上部に移動</a></p>
+				<p class="site-footer--scroll-top"><a class="site-footer--scroll-top_btn" href="#">サイト上部に移動</a></p>
 			</div>
 		</div>
 		<div class="site-footer--bottom u-float_left u-width_100par">
-			<div class="site-lr-space u-relative">
+			<div class="site-lr-space">
 				<div class="site-footer--bottom__left">
 					<h1 class="site-footer--site-title">株式会社◯◯◯◯◯◯◯◯◯◯◯</h1>
 					<div class="site-footer--company_info">
 						<p class="site-footer--company_info__name">株式会社◯◯◯◯◯◯◯◯◯◯◯</p>
 						<p class="site-footer--company_info__addr">○○県○○市○○○○○○○○</p>
-						<p class="site-footer--company_info_tel"><a href="tel:0000000000">0000-00-0000</a></p>
+						<?php
+							$site_tel = '0000-00-0000';
+							if( wp_is_mobile() ){
+								$site_tel = '<a href="tel:' . $site_tel .'">' . $site_tel . '</a>';
+							}
+						?>
+						<p class="site-footer--company_info_tel"><?php echo $site_tel; ?></p>
 						<p class="site-footer--company_info__fax">0000-00-0000</p>
 					</div>
 				</div>
