@@ -95,6 +95,7 @@ margin-right: auto;
 }
 
 /* 色 */
+.site-header{ background-color: #ff0; }
 .site-footer--top{ background-color: #f00; }
 .site-footer--scroll-top-btn{background-color: #fff;}
 .site-footer--bottom{ background-color: #ff0;}
@@ -104,6 +105,30 @@ margin-right: auto;
 }
 
 /* ============================================================ */
+body{
+  /* 角ゴシック */
+  font-family:
+    'ヒラギノ角ゴシック', 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', /* Mac,iphone,ipad */
+    'メイリオ', 'Meiryo', /* windows Vista〜 */
+    'ＭＳ Ｐゴシック', 'MS PGothic', /* windows95〜 */
+    sans-serif;
+
+  /* 丸ゴシック ※office無しのwindows、android等は表示されない可能性あり、マルチ環境が必須の場合webフォントの使用を検討 */
+  // font-family:
+  //   'ヒラギノ丸ゴ Pro W4','ヒラギノ丸ゴ Pro','Hiragino Maru Gothic Pro',
+  //   'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',
+  //   'HG丸ｺﾞｼｯｸM-PRO','HGMaruGothicMPRO';
+
+  /* 明朝 ※android等は表示されない可能性あり、マルチ環境が必須の場合webフォントの使用を検討 */
+  // font-family:
+  //   'ヒラギノ明朝 ProN W3', 'Hiragino Mincho ProN W3', 'HiraMinProN-W3', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN','ヒラギノ明朝 Pro', 'Hiragino Mincho Pro' /* Mac,iphone,ipad */
+  //   '游明朝', YuMincho, /* windows 8.1〜 */
+  //   'HG明朝E', /* office搭載 */
+  //   'ＭＳ Ｐ明朝', 'ＭＳ 明朝', /* windows */
+  //   serif;
+}
+/* ============================================================ */
 @import "mixin";
+@import "header";
 @import "footer";
 @import "util";

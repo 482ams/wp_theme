@@ -1,0 +1,116 @@
+//main:style.scss
+
+/* =========
+コンテナ論理構造
+.site-header
+  .site-header-main
+    .site-header-main__left
+    .site-header-main__right
+      .main-navigation
+        .menu-toggle
+        .menu-all-pages-container
+
+========= */
+
+
+/* ==================
+   _sデフォルト設定のリセット
+================== */
+.menu-toggle{ display: block; }
+.main-navigation li{ float: none; }
+
+/* ==================
+   コンテナ
+================== */
+.site-header{}
+
+.site-header-main{
+  display: table;
+  width: 100%;
+  &__left{
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &__right{
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+.site-branding{}
+.main-navigation{}
+.site-branding{}
+
+/* ヘッダーメニュー */
+@include media_l{
+  .main-navigation{
+    &,&.toggled{
+      ul{ display: table; }
+    }
+    ul{
+      width: 100%;
+      li{ display: table-cell; }
+    }
+  }
+}
+
+/* スマホ ⇔ PC 切り替え */
+@include _media_l{
+  .main-navigation ul{ display: none; }
+}
+
+@include media_l{
+  .menu-toggle{ display: none; }
+}
+
+/* ==================
+   内容
+================== */
+/* ハンバーガーボタン */
+.menu-toggle{
+  margin-left: auto;
+}
+.nav-menu{
+  text-align: right;
+}
+
+
+/* ==================
+   入れ子のナビの処理
+================== */
+//TODO 実装を検討 ※after要素はクリックイベントなどを取得出来ないので使えない
+// js等で、.menu-item-has-childrenが合った場合にクリック用の要素を追加するなど
+
+
+/* ==================
+   スマホ時のナビ表示
+================== */
+/* ナビメニュー表示位置 */
+@include _media_l{
+  .site-header{
+    position: relative;
+  }
+
+  .menu-all-pages-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+  }
+
+  .main-navigation{
+    ul{
+      li{
+        display: block;
+        &.menu-item{
+          border-bottom: 1px solid #000;
+        }
+      }
+    }
+  }
+
+  .nav-menu{
+    text-align: left;
+  }
+
+}

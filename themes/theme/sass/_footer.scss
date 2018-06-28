@@ -74,15 +74,19 @@
   @include hideText;
   &::after{
       @include showText;
-      @include fontawsome;
       position: absolute;
-      content: '\f106';
+      content: '\f106\ATOP';
+      white-space: pre ;
       top: 50%;
       left: 0;
       right: 0;
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
       text-align: center;
+
+      font-family: FontAwesome, Meiryo, メイリオ;
+      font-size: 14px;
+      line-height: 1.2;
   }
 }
 
