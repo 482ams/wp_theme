@@ -8,7 +8,7 @@
     .site-header-main__right
       .main-navigation
         .menu-toggle
-        .menu-all-pages-container
+        .menu-{メニュー名}-container
 
 ========= */
 
@@ -19,10 +19,20 @@
 .menu-toggle{ display: block; }
 .main-navigation li{ float: none; }
 
+.main-navigation ul ul li:hover>ul, .main-navigation ul ul li.focus>ul {
+  left: auto;
+}
+.main-navigation ul ul a {
+  width: auto;
+}
+
+
 /* ==================
    コンテナ
 ================== */
-.site-header{}
+.site-header{
+  position: relative;
+}
 
 .site-header-main{
   display: table;
@@ -77,20 +87,62 @@
 /* ==================
    入れ子のナビの処理
 ================== */
-//TODO 実装を検討 ※after要素はクリックイベントなどを取得出来ないので使えない
-// js等で、.menu-item-has-childrenが合った場合にクリック用の要素を追加するなど
+.main-navigation li {
+  position: static;
+  @include _media_l{
+    position: relative;
+  }
+}
 
+.main-navigation .sub-menu .sub-menu {
+  position: absolute;
+}
 
+.main-navigation ul ul,.main-navigation ul ul ul {
+  float: none;
+  left: 0;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.menu-item-btn-area{
+  text-align: center;
+}
+
+.menu-item-children-control-btn{
+  position: relative;
+  display: block;
+  height: 20px;
+  cursor: pointer;
+
+  &::after{
+    content: '\f107';
+    @include fontawsome;
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &:hover{
+    background-color: #000;
+  }
+}
+
+/* 表示・非表示処理 */
+:not(.toggle-on) + .sub-menu{
+  display: none;
+}
 /* ==================
    スマホ時のナビ表示
 ================== */
 /* ナビメニュー表示位置 */
 @include _media_l{
-  .site-header{
-    position: relative;
-  }
-
-  .menu-all-pages-container{
+  .main-navigation > div{
     position: absolute;
     left: 0;
     right: 0;
