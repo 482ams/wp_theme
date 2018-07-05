@@ -23,43 +23,43 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'theme' ); ?></a>
-
-	<header id="masthead" class="site-header">
-		<div class="site-lr-space">
-			<div class="site-header-main">
-				<div class="site-header-main__left">
-					<div class="site-branding">
-						<?php
-						the_custom_logo();
-						if ( is_front_page() && is_home() ) :
-							?>
-							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+	<div class="js-scroll-togled">
+		<header id="masthead" class="site-header">
+			<div class="site-lr-space">
+				<div class="site-header-main">
+					<div class="site-header-main__left">
+						<div class="site-branding">
 							<?php
-						else :
-							?>
-							<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+							the_custom_logo();
+							if ( is_front_page() && is_home() ) :
+								?>
+								<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+								<?php
+							else :
+								?>
+								<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+								<?php
+							endif;
+							$theme_description = get_bloginfo( 'description', 'display' );
+							if ( $theme_description || is_customize_preview() ) :
+								?>
+								<p class="site-description"><?php echo $theme_description; /* WPCS: xss ok. */ ?></p>
+							<?php endif; ?>
+						</div><!-- .site-branding -->
+					</div>
+					<div class="site-header-main__right">
+						<nav id="site-navigation" class="main-navigation">
+							<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'theme' ); ?></button>
 							<?php
-						endif;
-						$theme_description = get_bloginfo( 'description', 'display' );
-						if ( $theme_description || is_customize_preview() ) :
+							wp_nav_menu( array(
+								'theme_location' => 'menu-1',
+								'menu_id'        => 'primary-menu',
+							) );
 							?>
-							<p class="site-description"><?php echo $theme_description; /* WPCS: xss ok. */ ?></p>
-						<?php endif; ?>
-					</div><!-- .site-branding -->
-				</div>
-				<div class="site-header-main__right">
-					<nav id="site-navigation" class="main-navigation">
-						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'theme' ); ?></button>
-						<?php
-						wp_nav_menu( array(
-							'theme_location' => 'menu-1',
-							'menu_id'        => 'primary-menu',
-						) );
-						?>
-					</nav><!-- #site-navigation -->
+						</nav><!-- #site-navigation -->
+					</div>
 				</div>
 			</div>
-		</div>
-	</header><!-- #masthead -->
-
+		</header><!-- #masthead -->
+	</div>
 	<div id="content" class="site-content">

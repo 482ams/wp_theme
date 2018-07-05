@@ -22,12 +22,20 @@
   &__abs{
     position: absolute;
     z-index: 1;
-    top: 0;
+    bottom: 0;
     right: 0;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+    -webkit-transform: translateY(50%);
+    transform: translateY(50%);
     margin: 0;
     padding: 0;
+    @at-root .site-footer--scroll-top-area :not(.on) &{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      -webkit-transform: none;
+      transform:none;
+    }
+
   }
 }
 

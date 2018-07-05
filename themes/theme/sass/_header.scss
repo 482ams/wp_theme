@@ -31,7 +31,12 @@
    コンテナ
 ================== */
 .site-header{
-  position: relative;
+  // position: relative;
+  position:fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .site-header-main{
@@ -166,3 +171,9 @@
   }
 
 }
+
+
+/* ==================
+   スクロール設定
+================== */
+.js-scroll-togled.on .site-header{}

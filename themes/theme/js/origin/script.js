@@ -69,3 +69,46 @@ jQuery(function () {
   });
 
 });
+
+/* ================================
+* 特定条件でフラグ on を付与
+* .js-scroll-togledが付与された要素に対して動作する
+* data-toggled-timing=でフラグを付与する基準を設定
+*   'page-top'    オブジェクトがページの上部に到達したら
+*   'page-bottom' オブジェクトがページ下部に到達したら
+* data-toggled-delay=でフラグを付けるタイミングを操作する
+* 注意：onが付与された要素に対してposition等位置が変化するcssを適用しないこと
+※     サイズ変更などが発生する場合はdelayを使うなどして、場所が変わる事を意識する
+================================ */
+jQuery(function(){
+  jQuery(window).on("load",function(){
+    jQuery(".js-scroll-togled").each(function(){
+      var toggled_timing = jQuery(this).attr('data-toggled-timing');
+      if( toggled_timing === undefined || ( toggled_timing !== 'page-top' && toggled_timing !== 'page-bottom' ) ){
+        jQuery(this).attr( 'data-toggled-timing', 'page-top' );
+      }
+      if( jQuery(this).attr('data-toggled-delay') === undefined ){
+        jQuery(this).attr( 'data-toggled-delay', 0 );
+      }
+    });
+  });
+
+  jQuery(window).scroll(function(){
+    jQuery(".js-scroll-togled[data-toggled-timing=page-top]").each(function(){
+       if( jQuery(window).scrollTop() - Number( jQuery(this).offset().top ) > Number( jQuery(this).attr('data-toggled-delay') ) ){
+         jQuery(this).addClass('on');
+       }else{
+         jQuery(this).removeClass('on');
+       }
+    });
+
+    jQuery(".js-scroll-togled[data-toggled-timing=page-bottom]").each(function(){
+      if( (jQuery(window).scrollTop() + window.innerHeight ) - ( Number( jQuery(this).offset().top ) + jQuery(this).height() ) > Number( jQuery(this).attr('data-toggled-delay') ) ){
+        jQuery(this).addClass('on');
+      }else{
+        jQuery(this).removeClass('on');
+      }
+
+    });
+  });
+});

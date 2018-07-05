@@ -97,7 +97,7 @@ margin-right: auto;
 /* 色 */
 .site-header{ background-color: #ff0; }
 .site-footer--top{ background-color: #f00; }
-.site-footer--scroll-top-btn{background-color: #fff;}
+.site-footer--scroll-top-btn{background-color: #000;}
 .site-footer--bottom{ background-color: #ff0;}
 .site-footer--copyright{
   border-top-color: #000;
@@ -131,4 +131,5 @@ body{
 @import "mixin";
 @import "header";
 @import "footer";
+@import "front_page";
 @import "util";

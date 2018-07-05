@@ -29,7 +29,7 @@
 		<div class="u-float_left u-width_100par">
 			<div class="site-lr-space">
 				<div class="site-footer--scroll-top-area">
-						<p class="site-footer--scroll-top-area__abs"><a class="site-footer--scroll-top-btn" href="#">サイト上部に移動</a></p>
+						<div class="js-scroll-togled" data-toggled-timing="page-bottom" data-toggled-delay="40"><p class="site-footer--scroll-top-area__abs" ><a class="site-footer--scroll-top-btn" href="#">サイト上部に移動</a></p></div>
 				</div>
 			</div>
 		</div>

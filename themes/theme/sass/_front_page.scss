@@ -1,0 +1,34 @@
+//main:style.scss
+
+.hero{
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+   &__back,&__front{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  &__back{}
+  &__front{
+    display: table;
+    width: 100%;
+    height: 100%;
+    &__inner{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}
+.hero-bg-slide{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  li{
+    margin: 0;
+    padding: 0;
+  }
+}
