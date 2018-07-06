@@ -16,7 +16,7 @@ class Theme_setting{
 
   function __construct() {
     /* style、script読み込み */
-    add_action( 'wp_enqueue_scripts', array( $this, 'theme_scripts' ) );
+    add_action( 'wp_enqueue_scripts', array( $this, 'theme_styles_scripts' ) );
 
     /* Wordpressの追加基本設定 */
     // new Class_wp_custom_setting();
@@ -57,12 +57,20 @@ class Theme_setting{
   }
 
   /* style、script読み込み */
-  public function theme_scripts() {
+  public function theme_styles_scripts() {
     wp_enqueue_style( 'add-theme-style', get_template_directory_uri(). '/add.css', 'theme-style' );
     // wp_enqueue_style( 'fontawsome', 'href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css', 'theme-style' );
 
     wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'theme-script', get_template_directory_uri() . '/js/origin/script.js', array( 'jquery' ), '', true );
+
+    /* トップページスライダー使用 */
+    if( is_front_page() ){
+      wp_enqueue_style( 'swiper_style', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css' );
+      wp_enqueue_script( 'swiper_script', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js', array(), '', true );
+    }
+
+    wp_enqueue_script( 'theme-script', get_template_directory_uri() . '/js/origin/script.js', array( 'jquery','swiper_script' ), '', true );
+
 
     // /* googlemap表示(google map api使用の場合) */
   	// if( is_page( 'company' ) ){

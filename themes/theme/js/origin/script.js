@@ -63,11 +63,7 @@ jQuery(function () {
     }else{
       target.addClass( "toggle-on" );
     }
-
-    /* data-toggle-dont-change-parentが付与されている場合 */
-
   });
-
 });
 
 /* ================================
@@ -112,3 +108,40 @@ jQuery(function(){
     });
   });
 });
+
+/* ================================
+* swiper（トップページスライダー）の設定
+================================ */
+ jQuery(document).ready(function () {
+  var mySwiper = new Swiper ('.swiper-container', {
+    /* オプション */
+    loop: true,
+    noSwiping: true,
+    noSwipingClass: 'no_swipe',
+    autoplay: {
+      delay: 5000,
+    },
+    speed: 2000,
+    // effect:"slide",
+    effect:"fade",
+    // effect:"cube",
+    // effect:"coverflow",
+    // effect:"flip",
+
+    /* ページネーション */
+    // pagination: {
+    //   el: '.swiper-pagination',
+    // },
+
+    /* ナビゲーション */
+    // navigation: {
+    //   nextEl: '.swiper-button-next',
+    //   prevEl: '.swiper-button-prev',
+    // },
+
+    /* スクロールバー */
+    // scrollbar: {
+    //   el: '.swiper-scrollbar',
+    // },
+  })
+})

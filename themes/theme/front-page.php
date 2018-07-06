@@ -15,16 +15,15 @@
 get_header();
 ?>
   <!-- ヒーローエリア -->
-  <div id="hero" class="hero">
+  <div id="hero" class="hero js-scroll-togled" data-toggled-delay= "200">
     <div class="hero__back">
-      <ul class="hero-bg-slide">
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-      </ul>
+      <div class="swiper-container">
+        <ul class="swiper-wrapper hero-bg-slide">
+          <li class="swiper-slide no_swipe"><div class="cover_img"><img src="<?php echo get_template_directory_uri() . '/img/demo/demo_img_1024_768_1.jpg' ?>" alt=""></div></li>
+          <li class="swiper-slide no_swipe"><div class="cover_img"><img src="<?php echo get_template_directory_uri() . '/img/demo/demo_img_1024_768_2.jpg' ?>" alt=""></div></li>
+          <li class="swiper-slide no_swipe"><div class="cover_img"><img src="<?php echo get_template_directory_uri() . '/img/demo/demo_img_1024_768_3.jpg' ?>" alt=""></div></li>
+        </ul>
+      </div>
     </div>
     <div class="hero__front">
       <div class="hero__front__inner">
