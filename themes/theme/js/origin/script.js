@@ -110,6 +110,33 @@ jQuery(function(){
 });
 
 /* ================================
+* スクロール位置が特定範囲内の場合、on を付与
+* .js-scroll-area-togledが付与された要素に対して動作する
+* data-area=""に判定するセレクタを設定（例：#◯◯◯◯）
+================================ */
+jQuery(function(){
+  jQuery(window).scroll(function(){
+    jQuery(".js-scroll-area-togled").each(function(){
+
+      var target = jQuery(this).attr('data-area');
+
+      if(jQuery(window).scrollTop() - jQuery(target).offset().top >= 0){
+        jQuery(this).addClass('on');
+      }
+
+      if(jQuery(window).scrollTop() - ( jQuery(target).offset().top + jQuery(target).height() ) >= 0 ){
+        jQuery(this).removeClass('on');
+      }
+
+      if(jQuery(window).scrollTop() - jQuery(target).offset().top < 0){
+        jQuery(this).removeClass('on');
+      }
+
+    });
+  });
+});
+
+/* ================================
 * swiper（トップページスライダー）の設定
 ================================ */
  jQuery(document).ready(function () {
