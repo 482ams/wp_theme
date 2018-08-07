@@ -2,10 +2,16 @@
   class Class_post_save_setting{
 
     function __construct(){
-      /* サムネイルの自動設定 */
+
+      /* ============================================================================
+      *  サムネイルの自動設定
+      ============================================================================ */
       // add_action('save_post', array( $this, 'save_default_thumbnail') );
+
     }
 
+
+    /* ======== サムネイルの自動設定 ======== */
     public function save_default_thumbnail( $_post_id ) {
     	if ( wp_is_post_revision( $_post_id ) ) { return false ; }
     	if ( !empty( get_post_meta( $_post_id, '_thumbnail_id', true ) ) ) { return false ; }
@@ -13,7 +19,7 @@
     	$update_thumb_id = false;
 
     	/*
-      * ==== post typeの情報取得 ====
+      * -------- post typeの情報取得 --------
       * 投稿タイプが 'post' の投稿
       */
     	// $post_type = get_post_type( $_post_id );
@@ -22,7 +28,7 @@
       // }
 
       /*
-      * ---- categoryで振り分け ----
+      * -------- categoryで振り分け --------
       * カテゴリーが '未分類' の投稿
       */
     	// 	$post_category = get_the_category( $_post_id );
@@ -31,7 +37,7 @@
     	// 	}
 
       /*
-      * ---- カスタムタクソノミーで振り分け ----
+      * -------- カスタムタクソノミーで振り分け --------
       * カスタムタクソノミー 'custom_category' が空白や特定の名前
       */
       // $custom_taxonomy_name = 'custom_category';
@@ -45,7 +51,7 @@
   		// }
 
       /*
-      * ---- カスタムフィールドで振り分け ----
+      * -------- カスタムフィールドで振り分け --------
       * カスタムフィールド 'custom_field' が空白や特定の内容
       */
       // $custom_field = 'custom_field';
@@ -56,7 +62,7 @@
   		// 	$update_thumb_id = '59';
   		// }
 
-    	/* ==== デフォルト画像を設定 ==== */
+    	/* -------- デフォルト画像を設定 -------- */
     	if( $update_thumb_id != false ){
     		update_post_meta( $_post_id, $meta_key = '_thumbnail_id', $meta_value = $update_thumb_id );
     	}

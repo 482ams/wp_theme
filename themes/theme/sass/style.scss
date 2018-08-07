@@ -2,99 +2,85 @@
 
 @import "_s_style";
 
-/* ========================
-# CSSコーディング基準
-
-1.コンテナと内容を分離する
-  コンテナ ： 内容を包括するブロック
-  内容 ： 意味のある情報
-2.メディアクエリなどで折り返しとなる場合、コンテナを入れ子にしてコンテナを折り返す
-3.横並び等になるコンテナ、absoluteされるコンテナなどを”インナーコンテナ”、横並びにならないコンテナを”アウターコンテナ”とする
-  ※画面全体の左右空きが適応されるコンテナが”アウターコンテナ”
-  ※特定範囲に背景色を敷く場合などはその背景色を設定する要素をコンテナとする(背景色を設定するコンテナを内容を記述するコンテナと分ける)
-    背景色を敷く ＝ 包含されている内容に意味がある
-4.コンテナの横並びは可能な限り”display:table-cell”を使用する
-  ※ 上下中央を指定可能のため
-5.背景色は基本的にコンテナに設定する（ボタンなどは別）
-6.コンテナ自体にmargin、paddingを設定しない
-7.画面全体の左右の空きは”アウターコンテナ”の直下に設定する(div.site-lr-space)
-8.コンテナ毎の上下空きはコンテナ内の内容によって設定する
-  ※コンテナにmargin,paddingを設定した場合、以下のような弊害が発生する
-    ・コンテナに設定した背景色がmarginにより欠ける
-    ・折り返しが発生した場合marginの食い合いが変わり、空きが変化する
-
-
-
-# メディアクエリの設定
-
-[参考 デバイスサイズ]
-iPhone 4（以下） 縦 320px  横 480px
-iPhone 5/SE     縦 320px  横 568px
-iPhone 7/6      縦 375px  横 667px
-iPhone 7/6 Plus 縦 480px  横 736px
-iPad            縦 768px   横 1024px
-
-## 切り方の例１ 細かく切り分ける場合
-スマホ縦             : 320px〜（通常、スマホ縦は最小のため、メディアクエリは不要）
-スマホ横             : 481px〜
-タブレット縦、横、PC  : 768px〜
-タブレット横、PC     : 1024px〜
-PC大               : 1200px〜
-
-## 切り方の例2 1回のメディアクエリ
-タブレット縦、横、PC  : 768px〜
-
-## 切り方の例3 2回のメディアクエリ（タブレット縦時、タブレット横時での切り替え）
-タブレット縦、横、PC  : 768px〜
-タブレット横、PC     : 992px or 1024px〜 (992pxはBootstrpでのタブレット(縦)とPCの切り分け)
-
-## 切り方の例4 3回のメディアクエリ
-タブレット縦、横、PC  : 768px〜
-タブレット横、PC     : 992px〜 or 1024px（Bootstrpでのタブレット(縦)とPCの切り分け）
-PC大               : 1200px〜（BootstrpでのPC大との切り分け）
-======================== */
-
-/* ======================== サイト設定 ======================== */
-/* メディアクエリ */
+/* ============================================================================
+*  メディアクエリ
+============================================================================ */
+$media_query_size__s: 480px;
 $media_query_size__m: 768px;
 $media_query_size__l: 992px;
+
+@mixin media_s{
+    @media all and ( min-width : $media_query_size__s ){
+        @content;
+    }
+}
+
+@mixin _media_s{
+    @media all and ( max-width : $media_query_size__s - 1 ){
+        @content;
+    }
+}
 
 @mixin media_m{
     @media all and ( min-width : $media_query_size__m ){
         @content;
     }
 }
+
 @mixin _media_m{
     @media all and ( max-width : $media_query_size__m - 1 ){
         @content;
     }
 }
+
 @mixin media_l{
     @media all and ( min-width : $media_query_size__l ){
         @content;
     }
 }
+
 @mixin _media_l{
     @media all and ( max-width : $media_query_size__l - 1 ){
         @content;
     }
 }
 
-/* 左右空き ※アウターコンテナの内側に入れる */
-$site_lr_space: 20px;
+/* ============================================================================
+*  サイト設定
+============================================================================ */
+
+/* ======== 左右空き ======== */
+$site_lr_space: 10px;
+$site_lr_space_m: 40px;
+
 .site-lr-space{
-padding: 0 $site_lr_space;
-max-width: 1240px;
-margin-left: auto;
-margin-right: auto;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 $site_lr_space;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media_m{
+    max-width: 1240px;
+    padding: 0 $site_lr_space_m;
+  }
 }
 
-/* 上下空き ※コンテナに設定しない事 */
-@mixin footer_tb_space{
-  margin: 20px 0;
+/* ======== 上下空き ======== */
+$site_tb_space: 50px;
+$site_tb_space_m: 120px;
+
+.site-tb-space{
+  margin-top: $site_tb_space;
+  margin-bottom: $site_tb_space;
+
+  @include media_m{
+    margin-top: $site_tb_space_m;
+    margin-bottom: $site_tb_space_m;
+  }
 }
 
-/* 色 */
+/* ======== 色 ======== */
 .site-header{ background-color: #ff0; }
 .site-footer--top{ background-color: #f00; }
 .site-footer--scroll-top-btn{background-color: #000;}
@@ -104,7 +90,10 @@ margin-right: auto;
   color: #888;
 }
 
-/* ============================================================ */
+
+/* ============================================================================
+*  デフォルト設定
+============================================================================ */
 body{
   /* 角ゴシック */
   font-family:
@@ -127,6 +116,90 @@ body{
   //   'ＭＳ Ｐ明朝', 'ＭＳ 明朝', /* windows */
   //   serif;
 }
+
+h1{
+  font-weight: bold;
+}
+
+h2{
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 40px;
+  padding-bottom: 5em;
+  color: #828282;
+
+  @include media_m{
+    font-size: 15px;
+  }
+
+}
+
+h3{
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 2.4em;
+  line-height: 1.6;
+  @include media_m{
+    font-size: 24px;
+  }
+}
+
+h4{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.8;
+  margin:0.6em 0;
+  @include media_m{
+    font-size: 20px;
+  }
+}
+
+h5{
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.4;
+  @include media_m{
+    font-size: 16px;
+  }
+}
+
+h6{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.8;
+  @include media_m{
+    font-size: 16px;
+  }
+}
+
+p{
+  font-size: 16px;
+  line-height: 2.2;
+  @include media_m{
+    font-size: 18px;
+  }
+}
+
+img{
+  vertical-align: bottom;
+}
+
+a,button,input[type="button"],input[type="submit"],input[type="reset"]{
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  &:hover{
+    opacity: 0.7;
+  }
+}
+
+a[href^="tel"]{
+    color: inherit;
+    text-decoration: none;
+}
+
 /* ============================================================ */
 @import "mixin";
 @import "component";

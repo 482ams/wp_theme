@@ -1,12 +1,82 @@
 //main:style.scss
 
-/* imgをbackground coverと同等の表示 */
+/* ============================================================================
+*  比率固定
+============================================================================ */
+.ratio_abs{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  &::before{
+    content: "";
+      display: block;
+      padding-top: 100%;
+  }
+
+  &__inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+  }
+
+  /* -------- 画像用（.cover_imgと組み合わせも可能 class="ratio_abs_img cover_img"と使用する場合） -------- */
+  &_img{
+    @extend .ratio_abs;
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  /* -------- 幅4 : 高さ3 -------- */
+  &--4to3,&--75{
+      &::before{
+          padding-top: 100% * ( 3 / 4 ) ;
+      }
+  }
+
+  /* -------- 幅3 : 高さ4 -------- */
+  &--3to4{
+    &::before{
+        padding-top: 100% * ( 4 / 3 ) ;
+    }
+  }
+
+  /* -------- a4縦 -------- */
+  &--a4_v{
+      &::before{
+          padding-top: 100% *( 297 / 210 ) ;
+      }
+  }
+
+  /* -------- a4横 -------- */
+  &--a4_h{
+      &::before{
+          padding-top: 100% *( 210 / 297 ) ;
+      }
+  }
+
+}
+
+/* ============================================================================
+*  imgをbackground coverと同等の表示
+*
+*  .cover_imgにで高さが設定されている必要があるかも・・・
+*  画面幅全体の場合はmax-height: 100vh;など
+*
+============================================================================ */
 .cover_img{
   position: relative;
   overflow: hidden;
+  display: block;
   width: 100%;
   height: 100%;
-  // max-height: 100vh; /* 単体動作させる場合に必要 */
   img{
     position: absolute;
     top: 50%;
@@ -16,6 +86,15 @@
     min-width: 100%;
     min-height: 100%;
     max-width: inherit;
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+  }
+  &__bottom{
+    img{
+      top:auto;
+      bottom:0;
+      -webkit-transform: translate(-50%,0);
+              transform: translate(-50%,0);
+    }
   }
 }
