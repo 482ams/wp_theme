@@ -137,7 +137,8 @@ class Origin_Theme_setting{
 
 
     /* -------- add.cssの読み込み（スタイル追記用css） -------- */
-    wp_enqueue_style( 'add-theme-style', get_template_directory_uri(). '/add.css', 'theme-style' );
+    wp_enqueue_style( 'theme-main-style', get_template_directory_uri(). '/css/theme-style.css', 'theme-style' );
+    wp_enqueue_style( 'add-theme-style', get_template_directory_uri(). '/css/add.css', array('theme-style','theme-main-style') );
 
 
     /* <img srcset > 未対応ブラウザのポリフィル */
