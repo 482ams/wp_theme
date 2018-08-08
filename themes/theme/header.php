@@ -23,43 +23,31 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'theme' ); ?></a>
-	<div class="js-scroll-togled">
 		<header id="masthead" class="site-header">
-			<div class="site-lr-space">
-				<div class="site-header-main">
-					<div class="site-header-main__left">
-						<div class="site-branding">
-							<?php
-							the_custom_logo();
-							if ( is_front_page() && is_home() ) :
-								?>
-								<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-								<?php
-							else :
-								?>
-								<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-								<?php
-							endif;
-							$theme_description = get_bloginfo( 'description', 'display' );
-							if ( $theme_description || is_customize_preview() ) :
-								?>
-								<p class="site-description"><?php echo $theme_description; /* WPCS: xss ok. */ ?></p>
-							<?php endif; ?>
-						</div><!-- .site-branding -->
-					</div>
-					<div class="site-header-main__right">
-						<nav id="site-navigation" class="main-navigation">
-							<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'theme' ); ?></button>
-							<?php
-							wp_nav_menu( array(
-								'theme_location' => 'menu-1',
-								'menu_id'        => 'primary-menu',
-							) );
-							?>
-						</nav><!-- #site-navigation -->
-					</div>
+			<div class="site-header__inner">
+				<div class="site-branding">
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri() . "/img/header_logo.png" ?>" alt="株式会社◯×△■"></a></h1>
 				</div>
+				<!-- .site-branding -->
+				<nav id="site-navigation" class="main-navigation">
+					<button class="menu-toggle hamburger" aria-controls="primary-menu" aria-expanded="false"><span class="hamburger_top"></span><span class="hamburger_middle"></span><span class="hamburger_bottom"></span></button>
+					<div id="primary-menu" class="menu">
+						<ul aria-expanded="true" class="nav-menu">
+							<li class=""><div class="js-scroll-area-togled" data-area="#works"><a class="works" href="">作品紹介<small>works</small></a></div></li>
+							<li class=""><div class="js-scroll-area-togled" data-area="#about"><a class="about" href="">会社案内<small>company</small></a></div></li>
+							<li class=""><div class="js-scroll-area-togled" data-area="#contact"><a class="contact" href="">お問い合わせ<small>contact</small></a></div></li>
+							<li class="primary-menu__phone">
+								<?php if( wp_is_mobile() ): ?>
+									<a class="phone" href="tel:000-000-0000">000-000-0000</a>
+								<?php else: ?>
+									<span>000-000-0000</span>
+								<?php endif; ?>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<!-- #site-navigation -->
 			</div>
-		</header><!-- #masthead -->
-	</div>
-	<div id="content" class="site-content">
+		</header>
+		<!-- #masthead -->
+<div id="content" class="site-content">

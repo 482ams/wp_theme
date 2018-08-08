@@ -1,23 +1,19 @@
 //main:style.scss
 
-/* =========
-コンテナ論理構造
-.site-header
-  .site-header-main
-    .site-header-main__left
-    .site-header-main__right
-      .main-navigation
-        .menu-toggle
-        .menu-{メニュー名}-container
-
-========= */
-
 
 /* ==================
-   _sデフォルト設定のリセット
+   設定リセット
 ================== */
 .menu-toggle{ display: block; }
+
+.main-navigation {
+    clear:none;
+    float: none;
+    width: auto;
+}
+
 .main-navigation li{ float: none; }
+
 
 .main-navigation ul ul li:hover>ul, .main-navigation ul ul li.focus>ul {
   left: auto;
@@ -26,154 +22,300 @@
   width: auto;
 }
 
+.menu-toggle{
+  /* ボタンデザインリセット */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+}
+
+/* ==================================== */
 
 /* ==================
-   コンテナ
+   header大外
 ================== */
 .site-header{
-  // position: relative;
   position:fixed;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 100;
+  height: 60px;
+  &__inner{
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack:justify;
+    -ms-flex-pack:justify;
+            justify-content:space-between;
+    align-items: center;
+  }
 }
 
-.site-header-main{
-  display: table;
-  width: 100%;
-  &__left{
-    display: table-cell;
-    vertical-align: middle;
-  }
-  &__right{
-    display: table-cell;
-    vertical-align: middle;
-  }
+/* ==================
+   サイトタイトル
+================== */
+.site-branding{}
+.site-title{
+  margin: 0;
+  a{}
+  img{}
 }
-.site-branding{}
-.main-navigation{}
-.site-branding{}
 
-/* ヘッダーメニュー */
-@include media_l{
-  .main-navigation{
-    &,&.toggled{
-      ul{ display: table; }
+/* ==================
+   ナビゲーション
+================== */
+.main-navigation{
+  @include _media_m{
+    .menu-toggle{
+      display: block;
     }
-    ul{
+
+    .nav-menu{
+      display: none;
+    }
+  }
+
+  @include media_m{
+    .menu-toggle{
+      display: none;
+    }
+
+    .nav-menu{
+      display: flex;
       width: 100%;
-      li{ display: table-cell; }
+      align-items: center;
+    }
+    &.toggled {
+      .menu .menu-toggle{ display: none; }
+      .nav-menu{ display: flex;  }
     }
   }
 }
 
-/* スマホ ⇔ PC 切り替え */
-@include _media_l{
-  .main-navigation ul{ display: none; }
-}
-
-@include media_l{
-  .menu-toggle{ display: none; }
-}
 
 /* ==================
-   内容
+   ハンバーガーメニュー
 ================== */
-/* ハンバーガーボタン */
-.menu-toggle{
-  margin-left: auto;
-}
-.nav-menu{
-  text-align: right;
-}
-
-
-/* ==================
-   入れ子のナビの処理
-================== */
-.main-navigation li {
-  position: static;
-  @include _media_l{
-    position: relative;
-  }
-}
-
-.main-navigation .sub-menu .sub-menu {
-  position: absolute;
-}
-
-.main-navigation ul ul,.main-navigation ul ul ul {
-  float: none;
-  left: 0;
-  top: 100%;
-  left: 0;
-  right: 0;
-  width: 100%;
-}
-
-.menu-item-btn-area{
-  text-align: center;
-}
-
-.menu-item-children-control-btn{
+.hamburger{
   position: relative;
   display: block;
-  height: 20px;
-  cursor: pointer;
 
-  &::after{
-    content: '\f107';
-    @include fontawsome;
+  width: 34px;
+  height: 28px;
+
+  &_top,&_middle,&_bottom{
     position: absolute;
     display: block;
+    left: 0;
+    right:0;
+    border: 3px solid #000;
+  }
+
+  &_top{
     top: 0;
+  }
+  &_middle{
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  &_bottom{
     bottom: 0;
-    left: 0;
-    right: 0;
   }
 
-  &:hover{
-    background-color: #000;
-  }
-}
-
-/* 表示・非表示処理 */
-:not(.toggle-on) + .sub-menu{
-  display: none;
-}
-/* ==================
-   スマホ時のナビ表示
-================== */
-/* ナビメニュー表示位置 */
-@include _media_l{
-  .main-navigation > div{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    background-color: #fff;
-  }
-
-  .main-navigation{
-    ul{
-      li{
-        display: block;
-        &.menu-item{
-          border-bottom: 1px solid #000;
-        }
+  @at-root{
+    .menu-toggle[aria-expanded="true"] &{
+      &_middle{
+        display: none;
+      }
+      &_top{
+        top: 50%;
+        -webkit-transform: translateY(-50%) rotate(45deg);
+                transform: translateY(-50%) rotate(45deg);
+        border: 3px solid #fff;
+      }
+      &_bottom{
+        bottom:auto;
+        top: 50%;
+        -webkit-transform: translateY(-50%) rotate(-45deg);
+                transform: translateY(-50%) rotate(-45deg);
+        border: 3px solid #fff;
       }
     }
   }
-
-  .nav-menu{
-    text-align: left;
-  }
-
 }
 
 
 /* ==================
-   スクロール設定
+   メニューラッパー
 ================== */
-.js-scroll-togled.on .site-header{}
+.menu{
+  @include _media_m{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #333;
+
+    /* 単体スクロール設定 */
+    z-index: -1;
+    overflow-x: hidden;
+    ul{
+      overflow: scroll;
+      max-height: 100vh;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      width: 100%;
+      border-right:100px solid transparent;
+      box-sizing: content-box;
+    }
+  }
+}
+
+/* ==================
+   メニュー
+================== */
+.nav-menu{
+  padding-top: 60px;
+
+  li{
+    border-bottom: 1px solid #666;
+  }
+
+  a,span{
+    text-align: center;
+    position: relative;
+    font-weight: normal;
+    line-height: 1;
+    font-size: 12px;
+    padding: 0 1em;
+    color: #000;
+
+    small{
+      display: block;
+      color: #000;
+      letter-spacing: 0.1em;
+      font-size: 1.8em;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+  }
+  @include media_m{
+    padding-top: 0;
+    li{
+      border: none;
+    }
+  }
+}
+
+
+
+/* ==================
+   アニメーション
+================== */
+// .site-header{
+//   height: 60px;
+//   -webkit-transition: all 1s ease-out;
+//   transition: all 1s ease-out;
+//
+//   .site-title a img{
+//     -webkit-transition: all 1s ease-out;
+//     transition: all 1s ease-out;
+//     height: auto;
+//   }
+//
+//   .site-title a img{
+//     max-height: 60px;
+//   }
+//   @at-root #page.top-on &{
+//     background-color: #f2f2f2;
+//     height: 45px;
+//     .site-title a img{
+//       max-height: 45px;
+//     }
+//   }
+//
+//   @include media_m{
+//     height: 100px;
+//     .site-title a img{
+//       max-height: 100px;
+//     }
+//
+//     @at-root #page.top-on &{
+//       height: 50px;
+//       .site-title a img{
+//         max-height: 50px;
+//       }
+//     }
+//   }
+// }
+//
+// #masthead.main-navigation_toggled .site-title{
+//   @include _media_m{
+//     -webkit-animation-name: site_title_animation;
+//     -webkit-animation-duration: 0.2s;
+//     -webkit-animation-timing-function: ease-out;
+//     -webkit-animation-fill-mode: forwards;
+//     -webkit-animation-delay: 0;
+//             animation-name: site_title_animation;
+//             animation-duration: 0.2s;
+//             animation-timing-function: ease-out;
+//             animation-fill-mode: forwards;
+//             animation-delay: 0;
+//   }
+// }
+//
+// @-webkit-keyframes site_title_animation {
+//     0% {
+//       opacity: 1;
+//     }
+//     100% {
+//       opacity: 0;
+//       visibility:hidden;
+//     }
+// }
+//
+// @keyframes site_title_animation {
+//     0% {
+//       opacity: 1;
+//     }
+//     100% {
+//       opacity: 0;
+//       visibility:hidden;
+//     }
+// }
+//
+// .nav-menu{
+//   -webkit-transition: all 1s;
+//   transition: all 1s;
+// }
+//
+// .main-navigation{
+//   a{
+//     letter-spacing: 0;
+//     &::after{
+//       -webkit-transition: all 0.2s;
+//       transition: all 0.2s;
+//     }
+//     &:hover{
+//       letter-spacing: 0.2em;
+//       &::after{
+//         letter-spacing: 0.2em;
+//       }
+//     }
+//   }
+// }
+//
+// .menu-toggle{
+//   -webkit-transition: all 1s;
+//     transition: all 1s;
+// }

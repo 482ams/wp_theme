@@ -67,6 +67,14 @@ class Origin_Theme_setting{
 
 
     /* ============================================================================
+    *  管理画面追加ボタンの配置
+    ============================================================================ */
+    require get_template_directory() . '/inc/origin/class-admin_page_add_btn.php';
+    new Class_admin_page_add_btn();
+
+
+
+    /* ============================================================================
     *  管理画面の表示設定（納品向けの権限毎の管理画面カスタマイズなど）
     ============================================================================ */
     // require get_template_directory() . '/inc/origin/class-admin_page_setting.php';
@@ -136,7 +144,7 @@ class Origin_Theme_setting{
     wp_enqueue_script( 'jquery' );
 
 
-    /* -------- add.cssの読み込み（スタイル追記用css） -------- */
+    /* -------- テーマcssの読み込み -------- */
     wp_enqueue_style( 'theme-main-style', get_template_directory_uri(). '/css/theme-style.css', 'theme-style' );
     wp_enqueue_style( 'add-theme-style', get_template_directory_uri(). '/css/add.css', array('theme-style','theme-main-style') );
 

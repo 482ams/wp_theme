@@ -1,5 +1,3 @@
-// TODO 動作チェックおよび機能の必要可否検討
-
 /* ================================
 * ページ内 スムーズスクロール
 ================================ */
@@ -15,6 +13,28 @@ jQuery(function () {
         return false;
     });
 });
+
+
+
+/* ================================
+* 開始時アニメーション
+================================ */
+jQuery(function () {
+
+    jQuery(document).ready(function() {
+      jQuery('body').append('<div id="opening_anime" class="opening_anime"><div class="opening_anime__inner"></div></div>');
+    });
+
+    jQuery(window).on('load', function() {
+      jQuery('#opening_anime')[0].classList.add('end');
+    });
+
+});
+
+
+
+
+// TODO 以下の関数は動作チェックおよび機能の必要可否検討
 
 
 /* ================================
