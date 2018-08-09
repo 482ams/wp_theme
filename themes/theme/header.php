@@ -24,7 +24,7 @@
 		<header id="masthead" class="site-header">
 			<div class="site-header__inner">
 				<div class="site-branding">
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri() . "/img/header_logo.png" ?>" alt="株式会社◯×△■"></a></h1>
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri() . "/img/logo.png" ?>" alt="◯◯◯◯◯◯株式会社"></a></h1>
 				</div>
 				<!-- .site-branding -->
 				<nav id="site-navigation" class="main-navigation">

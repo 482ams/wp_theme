@@ -31,12 +31,8 @@ get_header();
       </div>
     </div>
   </div>
-  <!-- ヒーローエリアここまで -->
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-    <!-- トップ固定ページページ投稿の上 -->
-
-    <!-- トップ固定ページページ投稿の上終わり -->
   	<?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : ?>
 				<?php the_post(); ?>
@@ -47,12 +43,8 @@ get_header();
         </article><!-- #post-<?php the_ID(); ?> -->
       <?php endwhile; ?>
 		<?php endif; ?>
-    <!-- トップ固定ページページ投稿の下 -->
-
-    <!-- トップ固定ページページ投稿の下終わり -->
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
 <?php
  //get_sidebar();
 get_footer();
