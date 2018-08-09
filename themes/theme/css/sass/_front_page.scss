@@ -1,58 +1,116 @@
 //main:style.scss
 
+
+/* ==================
+   ヒーローエリア
+================== */
 .hero{
   position: relative;
   height: 100vh;
   width: 100vw;
-  &::after{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-  }
+  z-index: -1;
+  overflow: hidden;
 
-
-   &__back,&__front{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
   &__back{
-    .swiper-container{
-     width: 100%;
-     height: 100%;
-   }
-    ul{
-      width: 100%;
-      li{
-        width: 100%;
-      }
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    &__inner{
+      height: 100%;
     }
   }
+
   &__front{
-    display: table;
-    width: 100%;
     height: 100%;
     &__inner{
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
+      height: 100%;
+    }
+  }
+
+  /* -------- スマホ時ヒーローエリア表示サイズを変更 -------- */
+  @include _media_m{
+    width: auto;
+    height: auto;
+    &::before{
+      content: "";
+      display: block;
+      padding-top: 56.25%;
+      padding-bottom: 60px; //ヘッダーの高さ分表示領域を広げる
+    }
+
+    .hero__back,.hero__front{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      z-index: -1;
+      overflow: hidden;
+
+      &::before{
+        content:"";
+        display: block;
+        padding-top: 56.25%;
+        padding-bottom: 60px; //ヘッダーの高さ分表示領域を広げる
+      }
+
+      &__inner{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    .hero__front{
+      height: auto;
+      &__inner{
+        height: auto;
+      }
+    }
+
+  }
+}
+
+
+/* ==================
+   ヒーローエリアスライド
+================== */
+.hero-bg-slide{
+  width: 100%;
+  height: 100%;
+  .swiper-container{
+    width: 100%;
+    height: 100%;
+  }
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    li{
+      margin: 0;
+      padding: 0;
+      width: 100%;
     }
   }
 }
 
-.hero-bg-slide{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  li{
-    margin: 0;
-    padding: 0;
+/* ==================
+   ヒーロー前面エリア
+================== */
+.hero_front_content{
+  display: table;
+  width: 100%;
+  height: 100%;
+  &__inner{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 60px; //ヘッダーの高さ分表示領域を広げる
   }
 }

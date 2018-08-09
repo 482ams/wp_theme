@@ -197,6 +197,11 @@ a[href^="tel"]{
     text-decoration: none;
 }
 
+.content-area{
+  overflow: hidden;
+  background-color: #fff;
+}
+
 /* ============================================================ */
 @import "mixin";
 @import "component";
