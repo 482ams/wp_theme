@@ -19,3 +19,15 @@
 .u-clear_both{
   clear: both;
 }
+
+.m_display_none{
+  @include media_m{
+    display: none;
+  }
+}
+
+._m_display_none{
+  @include _media_m{
+    display: none;
+  }
+}

@@ -2,7 +2,7 @@
 
 
 /* ==================
-   設定リセット
+   リセット
 ================== */
 .menu-toggle{ display: block; }
 
@@ -23,7 +23,6 @@
 }
 
 .menu-toggle{
-  /* ボタンデザインリセット */
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -35,10 +34,9 @@
 
 }
 
-/* ==================================== */
 
 /* ==================
-   header大外
+   header
 ================== */
 .site-header{
   position:fixed;
@@ -56,24 +54,63 @@
     -webkit-box-pack:justify;
     -ms-flex-pack:justify;
             justify-content:space-between;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    /* 左右空き */
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 $site_lr_space;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include media_m{
+    height: 100px;
+    &__inner{
+      padding: 0 $site_lr_space_m;
+    }
   }
 }
+
 
 /* ==================
    サイトタイトル
 ================== */
-.site-branding{}
+.site-branding{
+  height: 100%;
+  width:100%;
+}
 .site-title{
+  height: 100%;
   margin: 0;
-  a{}
-  img{}
+  padding:5px 0;
+  a{
+    display: block;
+    height: 100%;
+    position: relative;
+  }
+  img{
+    position: absolute;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
 }
 
+
 /* ==================
-   ナビゲーション
+   メインナビゲーション
 ================== */
 .main-navigation{
+  z-index: 1;
+  padding-left: 20px;
   @include _media_m{
     .menu-toggle{
       display: block;
@@ -90,13 +127,17 @@
     }
 
     .nav-menu{
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       width: 100%;
-      align-items: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
     }
     &.toggled {
       .menu .menu-toggle{ display: none; }
-      .nav-menu{ display: flex;  }
+      .nav-menu{ display: -webkit-box; display: -ms-flexbox; display: flex;  }
     }
   }
 }
@@ -176,10 +217,12 @@
               box-sizing: border-box;
       width: 100%;
       border-right:100px solid transparent;
-      box-sizing: content-box;
+      -webkit-box-sizing: content-box;
+              box-sizing: content-box;
     }
   }
 }
+
 
 /* ==================
    メニュー
@@ -192,130 +235,142 @@
   }
 
   a,span{
+    display: block;
     text-align: center;
     position: relative;
     font-weight: normal;
     line-height: 1;
+    letter-spacing: 0.1em;
     font-size: 12px;
-    padding: 0 1em;
-    color: #000;
 
     small{
       display: block;
-      color: #000;
-      letter-spacing: 0.1em;
       font-size: 1.8em;
-      font-family: 'Open Sans', sans-serif;
     }
 
+    &,& small{
+      color: #000;
+      letter-spacing: 0.1em;
+    }
+
+    &.no-caption{
+      font-size: 22px;
+    }
   }
+
+  a{
+    &:hover{
+      &,& small{
+        letter-spacing: 0.3em;
+      }
+    }
+  }
+
+  .phone{
+    &::before{
+       content:'';
+       display: inline-block;
+       width: 0.8em;
+       height: 0.8em;
+       background-image: url('../img/icon_phone.png');
+       background-repeat: no-repeat;
+       background-position: center;
+       background-size: contain;
+      padding:0 0.5em 0 0;
+     }
+  }
+
+  @include _media_m{
+    a,span{
+      padding: 1em 0;
+      &,& small{
+        color: #fff;
+      }
+    }
+  }
+
   @include media_m{
     padding-top: 0;
+
     li{
       border: none;
+    }
+    a,span{
+      padding: 0 1em;
     }
   }
 }
 
 
+/* ==================
+   スクロール時
+================== */
+body.do_scroll{
+
+  .site-header{
+    height: 45px;
+    @include media_m{
+      height: 60px;
+    }
+  }
+
+  .nav-menu{
+    padding-top: 45px;
+    @include media_m{
+      padding-top: 0;
+    }
+  }
+
+  .hamburger{
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+
+}
+
 
 /* ==================
    アニメーション
 ================== */
-// .site-header{
-//   height: 60px;
-//   -webkit-transition: all 1s ease-out;
-//   transition: all 1s ease-out;
-//
-//   .site-title a img{
-//     -webkit-transition: all 1s ease-out;
-//     transition: all 1s ease-out;
-//     height: auto;
-//   }
-//
-//   .site-title a img{
-//     max-height: 60px;
-//   }
-//   @at-root #page.top-on &{
-//     background-color: #f2f2f2;
-//     height: 45px;
-//     .site-title a img{
-//       max-height: 45px;
-//     }
-//   }
-//
-//   @include media_m{
-//     height: 100px;
-//     .site-title a img{
-//       max-height: 100px;
-//     }
-//
-//     @at-root #page.top-on &{
-//       height: 50px;
-//       .site-title a img{
-//         max-height: 50px;
-//       }
-//     }
-//   }
-// }
-//
-// #masthead.main-navigation_toggled .site-title{
-//   @include _media_m{
-//     -webkit-animation-name: site_title_animation;
-//     -webkit-animation-duration: 0.2s;
-//     -webkit-animation-timing-function: ease-out;
-//     -webkit-animation-fill-mode: forwards;
-//     -webkit-animation-delay: 0;
-//             animation-name: site_title_animation;
-//             animation-duration: 0.2s;
-//             animation-timing-function: ease-out;
-//             animation-fill-mode: forwards;
-//             animation-delay: 0;
-//   }
-// }
-//
-// @-webkit-keyframes site_title_animation {
-//     0% {
-//       opacity: 1;
-//     }
-//     100% {
-//       opacity: 0;
-//       visibility:hidden;
-//     }
-// }
-//
-// @keyframes site_title_animation {
-//     0% {
-//       opacity: 1;
-//     }
-//     100% {
-//       opacity: 0;
-//       visibility:hidden;
-//     }
-// }
-//
-// .nav-menu{
-//   -webkit-transition: all 1s;
-//   transition: all 1s;
-// }
-//
-// .main-navigation{
-//   a{
-//     letter-spacing: 0;
-//     &::after{
-//       -webkit-transition: all 0.2s;
-//       transition: all 0.2s;
-//     }
-//     &:hover{
-//       letter-spacing: 0.2em;
-//       &::after{
-//         letter-spacing: 0.2em;
-//       }
-//     }
-//   }
-// }
-//
-// .menu-toggle{
-//   -webkit-transition: all 1s;
-//     transition: all 1s;
-// }
+
+/* -------- スクロール時アニメ -------- */
+.site-header{
+    -webkit-transition: all 0.6s ease-out;
+    transition: all 0.6s ease-out;
+}
+
+.nav-menu {
+  -webkit-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
+}
+
+
+/* -------- hover時アニメ -------- */
+.nav-menu a{
+  &,& small{
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+}
+
+
+/* -------- hamburgerクリック時アニメ -------- */
+.hamburger span{
+  -webkit-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+}
+
+
+/* -------- hamburgerクリック後のメニューの展開 -------- */
+.main-navigation.toggled .menu{
+  animation-name: menu_open_animation;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0;
+}
+
+@keyframes menu_open_animation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
